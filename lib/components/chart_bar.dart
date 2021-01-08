@@ -17,8 +17,11 @@ class ChartBar extends StatelessWidget {
       children: <Widget>[
         Container(
           height: 20,
+          padding: EdgeInsets.all(4),
           child: FittedBox(
-            child: Text('R\$${value.toStringAsFixed(2)}'),
+
+            child: Text('R\$${value.toStringAsFixed(2)}',
+            style: TextStyle(color: Colors.white),),
           ),
         ),
         SizedBox(height: 5),
@@ -50,7 +53,7 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        Text(label),
+        Text(label,  style: TextStyle(color: Colors.white), ),
       ],
     );
   }

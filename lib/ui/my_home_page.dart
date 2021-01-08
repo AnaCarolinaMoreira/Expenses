@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:expenses/components/transaction_form.dart';
 import 'package:flutter/material.dart';
+import 'package:neon/neon.dart';
 
-import 'dart:math';
+import '../components/chart.dart';
 import '../components/transaction_form.dart';
 import '../components/transaction_list.dart';
-import '../components/chart.dart';
 import '../models/transaction.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -46,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Colors.black87,
       context: context,
       builder: (_) {
         return TransactionForm(_addTransaction);
@@ -56,8 +59,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        title: Text('Depesas Pessoais'),
+        elevation: 5,
+        backgroundColor: Colors.black,
+        title: Neon(
+          text: 'Despesas Pessoais',
+          color: Colors.deepPurple,
+          fontSize: 16,
+          font: NeonFont.Beon,
+          flickeringText: false,
+          flickeringLetters: null,
+          glowingDuration: new Duration(seconds: 0),
+        ),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -65,17 +80,24 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
-          ],
+      body: Container(
+        //  color: Colors.black87,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Chart(_recentTransactions),
+              TransactionList(_transactions, _removeTransaction),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        elevation: 15,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         onPressed: () => _openTransactionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
